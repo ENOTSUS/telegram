@@ -1,0 +1,13 @@
+import telebot
+import setting 
+
+bot = telebot.Telebot(setting.token)
+@bot.messange_handler(content_types=['start'])
+def start(m,res=False):
+	bot.send_messange(m.chat.id,'text')
+
+@bot.messange_handler(content_types=["text"])
+def handle_text(messange):
+	bot.send_messange(messange.chat.id,"Вы заплатили 300$ и передаёте"+ messange.text)
+
+bot.polling(none_stop=True,interval=0)
